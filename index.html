@@ -9,7 +9,7 @@
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎟️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f5efe3;--ink:#171310;--mut:#6d645a;--card:rgba(255,255,255,.55);--line:rgba(23,19,16,.13);--ac:#c2303a;--serif:'Fraunces',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--tex:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -190,10 +190,20 @@ body.rcv{--bg:#f6e9dc;background:linear-gradient(#cfdcf3,#f6e9dc) fixed}
 #lv{position:absolute;inset:0;pointer-events:none;overflow:hidden}#lv img{position:absolute;transform:translate(-50%,-50%);height:auto;max-width:none}
 input[type=range]{padding:0;border:0;background:none;accent-color:var(--ac);height:26px}
 #out{cursor:grab}
+html.lite{--tex:none}
+html.lite .nav,html.lite .glass,html.lite .ov2{backdrop-filter:none;-webkit-backdrop-filter:none}
+html.lite .nav{background:var(--bg)}html.lite .glass{background:rgba(255,255,255,.72)}
+html.lite .bqs{filter:none}
+html.lite .stack .bqs,html.lite .pgn{animation:none}
+html.lite .bqs.go:not(.edit) .sw{animation:none}
+html.lite .bqs.go .tg{animation:ti .9s cubic-bezier(.2,1.4,.4,1) 1.9s backwards}
+html.lite .tc:before{display:none}
+html.lite .mc,html.lite .tk,html.lite .pbp,html.lite .tc{box-shadow:0 8px 18px -12px rgba(0,0,0,.4)}
 </style></head>
 <body><noscript><p style="padding:40px;text-align:center">Keepsake needs JavaScript to run. Please turn it on and reload.</p></noscript><header class="nav"><a class="logo" href="#/">Keepsake</a><nav><a href="#/message">Message</a><a href="#/ticket">Ticket</a><a href="#/photobooth">Photobooth</a><a href="#/photobook">Photobook</a><a href="#/bouquet">Bouquet</a><a href="#/play">Play</a><a href="#/surprise">Surprise</a></nav></header>
 <main id="m"></main><footer>Make something worth keeping.</footer>
 <script>
+(()=>{try{if(matchMedia('(pointer:coarse)').matches||(navigator.deviceMemory&&navigator.deviceMemory<=4))document.documentElement.classList.add('lite')}catch(e){}})();
 const $=s=>document.querySelector(s),M=$('#m');
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const fmtD=d=>d?new Date(d+'T00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):'Date to be announced';
@@ -225,7 +235,7 @@ function homeV(){M.innerHTML=`<div class="wrap"><section class="hero"><div><h1><
 <a class="tc" href="#/bouquet"><span class="art a5">${bq(B)}</span><div><h3>Bouquet Builder</h3><p>Pick flowers, arrange them by hand, add a note.</p></div></a>
 <a class="tc" href="#/play"><span class="art a6"><i></i><i></i></span><div><h3>Game Room</h3><p>Memory, petal pop and truth-or-dare. Win petals, unlock extras.</p></div></a>
 <a class="tc" href="#/photobook"><span class="art a7"><i></i><i></i></span><div><h3>Photobook</h3><p>Turn your photos into pages you can flip, save and print.</p></div></a></section>
-<section class="how"><h2>How it works</h2><div><h3>Choose a tool</h3><p class="mut">Start with a message, a ticket, a photo strip or a full surprise.</p></div><div><h3>Make it yours</h3><p class="mut">Add names, details and a style. The preview updates as you type.</p></div><div><h3>Keep or share it</h3><p class="mut">Download the image or send a link that opens like a gift.</p></div></section></div>`;const h=$('.hero');h.onpointermove=e=>{const r=h.getBoundingClientRect();h.style.setProperty('--px',(e.clientX-r.left)/r.width-.5);h.style.setProperty('--py',(e.clientY-r.top)/r.height-.5)}}
+<section class="how"><h2>How it works</h2><div><h3>Choose a tool</h3><p class="mut">Start with a message, a ticket, a photo strip or a full surprise.</p></div><div><h3>Make it yours</h3><p class="mut">Add names, details and a style. The preview updates as you type.</p></div><div><h3>Keep or share it</h3><p class="mut">Download the image or send a link that opens like a gift.</p></div></section></div>`;const h=$('.hero');h.onpointermove=e=>{if(e.pointerType==='touch')return;const r=h.getBoundingClientRect();h.style.setProperty('--px',(e.clientX-r.left)/r.width-.5);h.style.setProperty('--py',(e.clientY-r.top)/r.height-.5)}}
 /* MESSAGE */
 const OP=['Birthday','Romantic','Apology','Good Morning','Missing You','Anniversary','Custom'];
 const BODY={Birthday:"Happy birthday. Another year of you is the best thing about this one.",Romantic:"I don't say it enough: you make ordinary days feel like something worth keeping.",Apology:"I'm sorry. I got it wrong, and you deserve better than excuses.","Good Morning":"Good morning. I hope today is gentle with you, and that you know I'm thinking of you.","Missing You":"I miss you in small, specific ways: the quiet between plans, the stories I'm saving to tell you.",Anniversary:"Look how far we've come. I'd choose every one of these days again.",Custom:"Just a small note to say you matter to me."};
@@ -292,7 +302,7 @@ const FRM={cream:'#fffaf0',white:'#ffffff',ink:'#171310',blush:'#ffd9e2',sky:'#c
 const frc=()=>[...Object.keys(FRM).map(k=>[`<i class="sq" style="background:${FRM[k]}"></i>${k[0].toUpperCase()+k.slice(1)}`,k]),...[['Sunset',0],['Lagoon',1],['Grape',3],['Berry',5]].map(([n,i])=>[SW(PT[i])+n,'g'+i])];
 const pcur=()=>PSel.sel==='a'||!SHs[+PSel.sel]?D:SHs[+PSel.sel];
 O.PX=new Proxy({},{get:(t,k)=>pcur()[k],set:(t,k,v)=>{v=NUM.includes(k)?+v:v;if(PSel.sel==='a'||!SHs[+PSel.sel]){D[k]=v;SHs.forEach(s=>s[k]=v)}else SHs[+PSel.sel][k]=v;return true}});
-O.PSel=PSel;upd.PX=()=>compose();upd.PSel=()=>pcRender();upd.P=()=>{pcRender();compose()};
+O.PSel=PSel;const csoon=()=>{cancelAnimationFrame(csoon.t);csoon.t=requestAnimationFrame(compose)};upd.PX=()=>{liveSync();csoon()};upd.PSel=()=>pcRender();upd.P=()=>{pcRender();csoon()};
 const setShots=a=>{shots=a;SHs=a.map(()=>({...D}));PSel.sel='a'};
 const liveSync=()=>{const v=$('#v'),l=$('#lv');if(v)v.style.filter=(FX[D.flt]||FX.none).f||'none';if(l)l.innerHTML=stkHTML(D.s,D)};
 function fillGrad(x,T,W,H){const an=T.g[0]*Math.PI/180,dx=Math.sin(an),dy=-Math.cos(an),L=Math.abs(W*dx)+Math.abs(H*dy),g=x.createLinearGradient(W/2-dx*L/2,H/2-dy*L/2,W/2+dx*L/2,H/2+dy*L/2);g.addColorStop(0,T.g[1]);g.addColorStop(.5,T.g[2]);g.addColorStop(1,T.g[3]);x.fillStyle=g;x.fillRect(0,0,W,H)}
@@ -311,13 +321,13 @@ const hx=col.slice(1),lm=GR?(GR.f==='#ffffff'?0:255):(parseInt(hx.slice(0,2),16)
 const cells=[];for(let i=0;i<n;i++){const Y=40+i*(ph+gap),r=drawPhoto(x,shots[i],SHs[i]||D,40,Y,pw,ph);cells.push({X:40,Y,w:pw,h:ph,sx:r.sx,sy:r.sy})}
 x.textAlign='center';const cy=ey+(L==='polaroid'?90:58);x.fillStyle=tc;x.font='italic 400 38px Fraunces,Georgia,serif';P.cap&&x.fillText(P.cap,W/2,cy);
 if(P.ds){x.fillStyle=ac;x.font='500 20px Inter,sans-serif';x.letterSpacing='4px';x.fillText(new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase(),W/2,cy+(P.cap?44:6));x.letterSpacing='0px'}
-OC=c;LL={W,H,cells};const o=$('#out');o.src=c.toDataURL();o.hidden=false;$('#em').hidden=true;$('#oa').hidden=false}
+OC=c;LL={W,H,cells};const o=$('#out');o.src=c.toDataURL('image/jpeg',.9);o.hidden=false;$('#em').hidden=true;$('#oa').hidden=false}
 function pcRender(){const el=$('#pc');if(!el)return;const n=P.lay==='strip'?Math.min(4,shots.length):shots.length?1:0,ss=[...(n>1?[['All photos','a']]:[]),...Array.from({length:n},(_,i)=>['Photo '+(i+1),String(i)])];
 if(!n)PSel.sel='a';else if(!ss.some(s=>s[1]===PSel.sel))PSel.sel=n>1?'a':'0';
 const rg=(k,l,a,b,st)=>`<label>${l}</label><input type="range" aria-label="${l}" data-o="PX" data-k="${k}" min="${a}" max="${b}" step="${st}" value="${pcur()[k]}">`,fcp=(l,v)=>chip(l,pcur().flt,v);
 el.innerHTML=`<label>${n?'Edit':'Settings for your next photos'}</label>${n?chips('PSel','sel',ss):''}<label>Colour filter</label><div class="chips" data-o="PX" data-c="flt">${fcp('Original','none')}<small class="mut fh">Sweet</small>${[['Peach glow','peach'],['Rose milk','rose'],['Dreamy','dream'],['Candy','candy']].map(a=>fcp(...a)).join('')}<small class="mut fh">Salty</small>${[['Noir grain','noir'],['Moody teal','teal'],['Faded film','fade'],['Sunburn','sun'],['Black & white','bw'],['Vintage','vintage']].map(a=>fcp(...a)).join('')}</div><label>Face sticker</label>${chips('PX','s',[['None',''],...SK.map(s=>[s[3]+' '+s[1],s[0]])])}${rg('ss','Sticker size',.5,2,.05)}${rg('sx','Sticker left or right',-.3,.3,.01)}${rg('sy','Sticker up or down',-.3,.3,.01)}<label>Move the photo inside its frame</label>${rg('z','Zoom',1,3,.05)}${rg('x','Photo left or right',-1,1,.02)}${rg('y','Photo up or down',-1,1,.02)}${rg('r','Tilt',-20,20,1)}<div class="row" style="margin-top:12px"><button class="btn" id="pcr">Reset this photo</button></div>`;
 $('#pcr').onclick=()=>{const t=PSel.sel==='a'||!SHs[+PSel.sel]?null:SHs[+PSel.sel];if(t)Object.assign(t,D0());else{Object.assign(D,D0());SHs.forEach(s=>Object.assign(s,D0()))}pcRender();compose()}}
-document.addEventListener('pointermove',e=>{if(!pdrag||!LL)return;const c=LL.cells[pdrag.i],o=SHs[pdrag.i];if(!c||!o)return;o.x=Math.max(-1,Math.min(1,pdrag.ox+(e.clientX-pdrag.x0)*pdrag.k/(c.sx||1)));o.y=Math.max(-1,Math.min(1,pdrag.oy+(e.clientY-pdrag.y0)*pdrag.k/(c.sy||1)));compose()});
+document.addEventListener('pointermove',e=>{if(!pdrag||!LL)return;const c=LL.cells[pdrag.i],o=SHs[pdrag.i];if(!c||!o)return;o.x=Math.max(-1,Math.min(1,pdrag.ox+(e.clientX-pdrag.x0)*pdrag.k/(c.sx||1)));o.y=Math.max(-1,Math.min(1,pdrag.oy+(e.clientY-pdrag.y0)*pdrag.k/(c.sy||1)));csoon()});
 document.addEventListener('pointerup',()=>{if(pdrag){PSel.sel=String(pdrag.i);pdrag=null;pcRender()}});
 function pbV(){M.innerHTML=`<div class="wrap tool"><div class="glass"><h2>Photobooth</h2><p class="mut">Allow camera access, then strike a pose. Nothing leaves your device.</p><div class="vid" id="vid"><video id="v" playsinline muted></video><div id="lv"></div><div class="cd" id="cd"></div><div class="ph" id="ph">The camera is off.<br>Press Start camera.</div></div>
 <div class="row"><button class="btn p" id="go">Start camera</button><label class="btn" style="margin:0;cursor:pointer">Use photos from my device<input type="file" id="up" accept="image/*" multiple hidden></label></div><p class="mut" id="err" role="status"></p><label>Layout</label>${chips('P','lay',[['4-photo strip','strip'],['Single','single'],['Polaroid','polaroid']])}<div id="pc"></div><label>Strip colour</label>${chips('P','fr',frc())}${fld('P','cap','Caption','Us, tonight')}<label><input type="checkbox" data-o="P" data-k="ds" ${P.ds?'checked':''}>Add a date stamp</label></div>
@@ -378,7 +388,7 @@ let dr=null,dg=null,di=0;
 document.addEventListener('pointerdown',e=>{const g=e.target.closest('.edit [data-i]');if(!g)return;dg=g;di=+g.dataset.i;dr=B.fl.splice(di,1)[0];B.fl.push(dr);e.preventDefault()});
 document.addEventListener('pointermove',e=>{const s=$('.bqs.edit');if(!dr||!s)return;const p=s.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(s.getScreenCTM().inverse());dr.x=Math.max(50,Math.min(250,q.x));dr.y=Math.max(40,Math.min(215,q.y));dg.setAttribute('transform',`translate(${dr.x} ${dr.y}) rotate(${dr.r}) scale(.85)`);const st=s.querySelectorAll('.stm')[di];st&&st.setAttribute('d',`M${dr.x} ${dr.y}Q${(dr.x+150)/2} 262 150 320`)});
 document.addEventListener('pointerup',()=>{if(dr){dr=null;bdraw()}});document.addEventListener('pointercancel',()=>{if(dr){dr=null;bdraw()}});
-function petals(){for(let i=0;i<28;i++){const p=document.createElement('i');p.className='pt';p.style.cssText=`left:${Math.random()*100}vw;--d:${3+Math.random()*3}s;--w:${Math.random()*40-20}vw;background:${['#c2303a','#f08aa5','#fffaf0','#f4b400'][i%4]}`;document.body.appendChild(p);setTimeout(()=>p.remove(),6500)}}
+function petals(){for(let i=0;i<(document.documentElement.classList.contains('lite')?12:28);i++){const p=document.createElement('i');p.className='pt';p.style.cssText=`left:${Math.random()*100}vw;--d:${3+Math.random()*3}s;--w:${Math.random()*40-20}vw;background:${['#c2303a','#f08aa5','#fffaf0','#f4b400'][i%4]}`;document.body.appendChild(p);setTimeout(()=>p.remove(),6500)}}
 let LT=B;
 function openLetter(l,seal,cb){const o=document.createElement('div');o.className='ov2';
 const body=`<div style="text-align:center;opacity:.55">❦</div><div>${l.to?'Dear '+esc(l.to)+',':''}</div><div>${esc(l.note||'Write your letter in the Bouquet Builder and it will appear here.')}</div><div style="text-align:right;margin-top:auto;padding-top:16px">${l.from?'with love, '+esc(l.from):''}</div>`;
