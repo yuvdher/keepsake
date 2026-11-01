@@ -14,7 +14,7 @@ export default function Privacy() {
       <h2>Deleting and expiry</h2>
       <p>You can delete a surprise from the Surprise page on the device where you made it, which also removes its photos. Links you set to expire are removed automatically.</p>
       <h2>Contact</h2>
-      <p>Questions or removal requests: add your contact email here before launch.</p>
+      <p>Questions or removal requests: message us on Instagram at <a href="https://www.instagram.com/keepsake924/">@keepsake924</a>.</p>
     </main>
   );
 }
