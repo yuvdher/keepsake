@@ -192,3 +192,5 @@ html.lite .bqs.go:not(.edit) .sw{animation:none}
 html.lite .bqs.go .tg{animation:ti .9s cubic-bezier(.2,1.4,.4,1) 1.9s backwards}
 html.lite .tc:before{display:none}
 html.lite .mc,html.lite .tk,html.lite .pbp,html.lite .tc{box-shadow:0 8px 18px -12px rgba(0,0,0,.4)}
+.fol{padding:48px 0 72px;border-top:1px solid var(--line);text-align:center}.fol h2{font-size:clamp(30px,5vw,44px);margin-bottom:8px}.fol p{margin:0 0 18px}footer a{color:var(--ink);text-underline-offset:3px}
+.pbp figcaption{position:absolute;left:2.5cqw;right:2.5cqw;bottom:0;height:7.5cqw;line-height:7.5cqw;text-align:center;font:600 4.2cqw/7.5cqw Caveat,cursive;color:#2a2420;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
